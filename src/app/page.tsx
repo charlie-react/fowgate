@@ -4,7 +4,7 @@ import { Reveal, Stagger, StaggerItem } from "./components/motion-wrapper";
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import * as Accordion from "@radix-ui/react-accordion";
-import { b } from "framer-motion/client";
+import { b, pre } from "framer-motion/client";
 const navItems = ["Product", "Solutions", "Resources", "Learning", "Partners", "About", "Contact"];
 const industries = ["Oil, Gas & Energy", "Sales Distribution", "Manufacturing", "Food & Hospitality", "Government", "Real Estate", "Professional Services", "Agribusiness", "Construction"];
 const apps = ["Financial Management", "Human Capital Management", "Payroll Software", "Project Management", "CRM Software", "Invoicing Management", "Supply Chain Management", "Warehouse Management"];
@@ -473,87 +473,87 @@ function MobileNav({ openMobileNav, setOpenMobileNav }: { openMobileNav: boolean
 
         </div>
 
-       <div className="flex-1 overflow-y-auto px-6 pb-10">
-         <div className="flex flex-col pt-10 ">
+        <div className="flex-1 overflow-y-auto px-6 pb-10">
+          <div className="flex flex-col pt-10 ">
 
-          <Accordion.Root
-            type="multiple"
-            className="flex flex-col"
-          >
+            <Accordion.Root
+              type="multiple"
+              className="flex flex-col"
+            >
 
-            {mobileNavItems.map((item) => (
+              {mobileNavItems.map((item) => (
 
-              <Accordion.Item
-                key={item.title}
-                value={item.title}
-                className="border-b border-black/10"
-              >
+                <Accordion.Item
+                  key={item.title}
+                  value={item.title}
+                  className="border-b border-black/10"
+                >
 
-                <Accordion.Trigger className="group flex w-full items-center justify-between py-6 text-left text-2xl font-medium text-black">
+                  <Accordion.Trigger className="group flex w-full items-center justify-between py-6 text-left text-2xl font-medium text-black">
 
-                  {item.title}
+                    {item.title}
 
-                  <ChevronDown className="h-5 w-5 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+                    <ChevronDown className="h-5 w-5 transition-transform duration-300 group-data-[state=open]:rotate-180" />
 
-                </Accordion.Trigger>
+                  </Accordion.Trigger>
 
-                <Accordion.Content className="overflow-hidden pb-6 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+                  <Accordion.Content className="overflow-hidden pb-6 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
 
-                  <Accordion.Root
-                    type="multiple"
-                    className="flex flex-col gap-2"
-                  >
+                    <Accordion.Root
+                      type="multiple"
+                      className="flex flex-col gap-2"
+                    >
 
-                    {item.sections.map((section) => (
+                      {item.sections.map((section) => (
 
-                      <Accordion.Item
-                        key={section.heading}
-                        value={section.heading}
-                        className="rounded-2xl bg-slate-50 px-5"
-                      >
+                        <Accordion.Item
+                          key={section.heading}
+                          value={section.heading}
+                          className="rounded-2xl bg-slate-50 px-5"
+                        >
 
-                        <Accordion.Trigger className="group flex w-full items-center justify-between py-5 text-left text-lg font-medium text-slate-900">
+                          <Accordion.Trigger className="group flex w-full items-center justify-between py-5 text-left text-lg font-medium text-slate-900">
 
-                          {section.heading}
+                            {section.heading}
 
-                          <ChevronDown className="h-4 w-4 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+                            <ChevronDown className="h-4 w-4 transition-transform duration-300 group-data-[state=open]:rotate-180" />
 
-                        </Accordion.Trigger>
+                          </Accordion.Trigger>
 
-                        <Accordion.Content className="overflow-hidden pb-5 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+                          <Accordion.Content className="overflow-hidden pb-5 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
 
-                          <div className="flex flex-col gap-4 pl-2">
+                            <div className="flex flex-col gap-4 pl-2">
 
-                            {section.links.map((link) => (
-                              <a
-                                key={link}
-                                href="#"
-                                className="text-base font-normal text-slate-600 transition hover:text-black"
-                              >
-                                {link}
-                              </a>
-                            ))}
+                              {section.links.map((link) => (
+                                <a
+                                  key={link}
+                                  href="#"
+                                  className="text-base font-normal text-slate-600 transition hover:text-black"
+                                >
+                                  {link}
+                                </a>
+                              ))}
 
-                          </div>
+                            </div>
 
-                        </Accordion.Content>
+                          </Accordion.Content>
 
-                      </Accordion.Item>
+                        </Accordion.Item>
 
-                    ))}
+                      ))}
 
-                  </Accordion.Root>
+                    </Accordion.Root>
 
-                </Accordion.Content>
+                  </Accordion.Content>
 
-              </Accordion.Item>
+                </Accordion.Item>
 
-            ))}
+              ))}
 
-          </Accordion.Root>
+            </Accordion.Root>
 
+          </div>
         </div>
-       </div>
       </div>
 
 
@@ -561,7 +561,7 @@ function MobileNav({ openMobileNav, setOpenMobileNav }: { openMobileNav: boolean
     </div>
   );
 }
-
+9
 function SubNav({ openMobileNav }: { openMobileNav: boolean }) {
   const [activeSubNav, setActiveSubNav] = useState("");
   return (
@@ -653,6 +653,8 @@ function OverlayImage({ src, type }: { src: string; type: "approval" | "finance"
 function Solutions() {
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const currentItems = tabs.find((tab) => tab === activeTab);
+  const [mobileSolutions, setMobileSolutions] = useState(true);
+  const [openMenu,setOpenMenu]= useState(false)
   const items = [
     ["Consolidate & Manage Multiple Branches Or Companies", "Reconcile financials, inventory, and operations across multiple entities with a unified platform that provides real-time visibility and control.",],
     ["Simplify Complex Inter-Company Operations.", "Streamline inter-company transactions, eliminations, and reporting with automated processes that ensure accuracy and compliance across your organization.",],
@@ -711,6 +713,53 @@ function Solutions() {
             </StaggerItem>
           ))}
         </Stagger>
+
+    
+  <Stagger className="relative mt-12 flex items-center justify-between gap-3 md:hidden">
+    
+    <div className="">
+      <h3 className="text-lg border-b-2 border-blue-600">
+        {activeTab}
+      </h3>
+    </div>
+
+    <div
+      className="flex cursor-pointer items-center rounded-md border-2 border-blue-600 px-2 py-1"
+      onClick={() => setOpenMenu((prev) => !prev)}
+    >
+      <p className="text-blue-600">
+        More
+      </p>
+
+      <ChevronDown
+        className={`h-5 w-5 transition-transform duration-300 ${
+          openMenu ? "rotate-180" : ""
+        }`}
+      />
+    </div>
+
+    {openMenu && (
+      <div className="absolute right-0 top-14 z-50 rounded-md border border-slate-200 bg-white p-4 text-black shadow-lg">
+        
+        {tabs.map((tab) => (
+          <p
+            key={tab}
+            className="cursor-pointer rounded-md px-4 py-2 hover:bg-slate-100"
+            onClick={() => {
+              setActiveTab(tab);
+              setOpenMenu(false);
+            }}
+          >
+            {tab}
+          </p>
+        ))}
+
+      </div>
+    )}
+
+  </Stagger>
+ 
+
 
         {currentItems === "Multi Business Entity" && (
           <div className="mt-20 grid items-start gap-12 lg:grid-cols-2">
