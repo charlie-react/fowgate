@@ -23,9 +23,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="h-full scroll-smooth antialiased"
+      className="h-full scroll-smooth antialiased overflow-x-hidden"
     >
-      <body className={`${rubik.className} min-h-full flex flex-col`}>
+      <body className={`${rubik.className} min-h-full flex flex-col overflow-x-hidden`}>
         {children}
       </body>
     </html>

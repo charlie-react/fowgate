@@ -2,16 +2,114 @@
 
 import { Reveal, Stagger, StaggerItem } from "./components/motion-wrapper";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
+import * as Accordion from "@radix-ui/react-accordion";
+import { b } from "framer-motion/client";
 const navItems = ["Product", "Solutions", "Resources", "Learning", "Partners", "About", "Contact"];
-const subNavItems = ["Overview", "Solutions", "Customer Stories", "Integrations", "Resources", "What's New", "Getting Started"];
-
 const industries = ["Oil, Gas & Energy", "Sales Distribution", "Manufacturing", "Food & Hospitality", "Government", "Real Estate", "Professional Services", "Agribusiness", "Construction"];
 const apps = ["Financial Management", "Human Capital Management", "Payroll Software", "Project Management", "CRM Software", "Invoicing Management", "Supply Chain Management", "Warehouse Management"];
 const businessSuites = ["Cloud ERP Solutions", "Business AI", "Data Lake"]
 const resourcesOverview = ["Knowledge Base", "Blog", "Community"]
 const partnersOverview = ["Alliance Partners", "Tech Partners"]
 const companyOverview = ["Company Information", "Customer Stories", "Events", "News", "Security & Trust", "Careers"]
+
+const mobileNavItems = [
+  {
+    title: "Product",
+    sections: [
+      {
+        heading: "Business Suites",
+        links: [
+          "Cloud ERP Solutions",
+          "Business AI",
+          "Data Lake",
+        ],
+      },
+    ],
+  },
+
+
+  {
+    title: "Solutions",
+    sections: [
+      {
+        heading: "By Industry",
+        links: [
+          "Oil, Gas & Energy",
+          "Sales Distribution",
+          "Manufacturing",
+          "Food & Hospitality",
+          "Government",
+          "Real Estate",
+          "Professional Services",
+          "Agribusiness",
+          "Construction",
+        ],
+      },
+
+      {
+        heading: "By Business Application",
+        links: [
+          "Financial Management",
+          "Human Capital Management",
+          "Payroll Software",
+          "Project Management",
+          "CRM Software",
+          "Invoicing Management",
+          "Supply Chain Management",
+          "Warehouse Management",
+        ],
+      },
+    ],
+  },
+
+  {
+    title: "Resources",
+    sections: [
+      {
+        heading: "Resources Overview",
+        links: [
+          "Knowledge Base",
+          "Blog",
+          "Community",
+        ],
+      },
+    ],
+  },
+
+  {
+    title: "Partners",
+    sections: [
+      {
+        heading: "Partners Overview",
+        links: [
+          "Alliance Partners",
+          "Tech Partners",
+        ],
+      },
+    ],
+  },
+
+  {
+    title: "About",
+    sections: [
+      {
+        heading: "Company Overview",
+        links: [
+          "Company Information",
+          "Customer Stories",
+          "Events",
+          "News",
+          "Security & Trust",
+          "Careers",
+        ],
+      },
+    ],
+  },
+];
+const subNavItems = ["Overview", "Solutions", "Customer Stories", "Integrations", "Resources", "What's New", "Getting Started"];
+
+
 
 const tabs = ["Multi Business Entity", "Productivity Tools", "Data Management", "Human Capital Management", "Integration"];
 
@@ -113,11 +211,16 @@ function DashboardMockup() {
   );
 }
 
-function Header() {
+function Header({
+  openMobileNav,
+  setOpenMobileNav,
+}: {
+  openMobileNav: boolean;
+  setOpenMobileNav: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
 
   const [activeNav, setActiveNav] = useState("");
-  const [openMobileNav, setOpenMobileNav] = useState(false);
-  console.log(activeNav)
+
   return (
     <header className="relative overflow-visible bg-black text-white">
       <nav className="relative z-20 border-b  border-white/5 bg-black/40 backdrop-blur-xl">
@@ -300,24 +403,7 @@ function Header() {
             {openMobileNav ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
           </div>
 
-          <div
-            className={`absolute top-full right-0 min-h-screen w-full bg-white p-6 shadow-[0_30px_80px_rgba(0,0,0,0.1)] transition-transform duration-500 ease-out md:hidden ${openMobileNav
-              ? "translate-x-0 opacity-100"
-              : "translate-x-full opacity-0"
-              }`}
-          >
-            <div className="flex flex-col gap-6 pt-10">
-              {navItems.map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="text-lg font-medium text-slate-700 transition hover:text-black"
-                >
-                  {item}
-                </a>
-              ))}
-            </div>
-          </div>
+
         </div>
 
 
@@ -364,7 +450,119 @@ function Header() {
   );
 }
 
-function SubNav() {
+function MobileNav({ openMobileNav, setOpenMobileNav }: { openMobileNav: boolean, setOpenMobileNav: React.Dispatch<React.SetStateAction<boolean>> }) {
+  return (
+    <div
+      className={`fixed inset-0 z-9999 w-full bg-white transition-all duration-500 md:hidden ${openMobileNav
+        ? "translate-x-0 opacity-100"
+        : "translate-x-full opacity-0 pointer-events-none"
+        }`}
+    >
+
+      <div className="flex h-full flex-col">
+
+        <div className="flex h-20  items-center justify-between border-b border-black/5 px-6">
+
+          <div className="text-xl font-semibold text-blue-600">
+            Fowgate
+          </div>
+
+          <button onClick={() => setOpenMobileNav(false)}>
+            <X className="h-7 w-7 cursor-pointer hover:text-blue-600 transition duration-300" />
+          </button>
+
+        </div>
+
+       <div className="flex-1 overflow-y-auto px-6 pb-10">
+         <div className="flex flex-col pt-10 ">
+
+          <Accordion.Root
+            type="multiple"
+            className="flex flex-col"
+          >
+
+            {mobileNavItems.map((item) => (
+
+              <Accordion.Item
+                key={item.title}
+                value={item.title}
+                className="border-b border-black/10"
+              >
+
+                <Accordion.Trigger className="group flex w-full items-center justify-between py-6 text-left text-2xl font-medium text-black">
+
+                  {item.title}
+
+                  <ChevronDown className="h-5 w-5 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+
+                </Accordion.Trigger>
+
+                <Accordion.Content className="overflow-hidden pb-6 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+
+                  <Accordion.Root
+                    type="multiple"
+                    className="flex flex-col gap-2"
+                  >
+
+                    {item.sections.map((section) => (
+
+                      <Accordion.Item
+                        key={section.heading}
+                        value={section.heading}
+                        className="rounded-2xl bg-slate-50 px-5"
+                      >
+
+                        <Accordion.Trigger className="group flex w-full items-center justify-between py-5 text-left text-lg font-medium text-slate-900">
+
+                          {section.heading}
+
+                          <ChevronDown className="h-4 w-4 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+
+                        </Accordion.Trigger>
+
+                        <Accordion.Content className="overflow-hidden pb-5 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+
+                          <div className="flex flex-col gap-4 pl-2">
+
+                            {section.links.map((link) => (
+                              <a
+                                key={link}
+                                href="#"
+                                className="text-base font-normal text-slate-600 transition hover:text-black"
+                              >
+                                {link}
+                              </a>
+                            ))}
+
+                          </div>
+
+                        </Accordion.Content>
+
+                      </Accordion.Item>
+
+                    ))}
+
+                  </Accordion.Root>
+
+                </Accordion.Content>
+
+              </Accordion.Item>
+
+            ))}
+
+          </Accordion.Root>
+
+        </div>
+       </div>
+      </div>
+
+
+
+    </div>
+  );
+}
+
+function SubNav({ openMobileNav }: { openMobileNav: boolean }) {
   const [activeSubNav, setActiveSubNav] = useState("");
   return (
     <div className="sticky top-0 z-20 border-b border-black/5 bg-white/90 backdrop-blur-xl">
@@ -377,7 +575,7 @@ function SubNav() {
                 key={item}
                 href={`#${item.toLowerCase()}`}
                 onClick={() => setActiveSubNav(item)}
-                className={`flex h-16 shrink-0 items-center border-b-2 text-sm font-medium transition-all duration-300 ${activeSubNav === item
+                className={`flex h-16 shrink-0 items-center border-b-2 text-sm font-medium transition-all duration-300  ${activeSubNav === item
                   ? "border-blue-600 text-black"
                   : "border-transparent text-slate-500 hover:text-black"
                   }`}
@@ -454,6 +652,37 @@ function OverlayImage({ src, type }: { src: string; type: "approval" | "finance"
 
 function Solutions() {
   const [activeTab, setActiveTab] = useState(tabs[0]);
+  const currentItems = tabs.find((tab) => tab === activeTab);
+  const items = [
+    ["Consolidate & Manage Multiple Branches Or Companies", "Reconcile financials, inventory, and operations across multiple entities with a unified platform that provides real-time visibility and control.",],
+    ["Simplify Complex Inter-Company Operations.", "Streamline inter-company transactions, eliminations, and reporting with automated processes that ensure accuracy and compliance across your organization.",],
+    ["Consolidated Financial Reporting", "Generate comprehensive financial reports across all entities with a single, unified view.",],
+    ["Scalable Multi-Entity Architecture", "Build and manage a flexible, scalable infrastructure that supports your organization's growth and complexity.",],
+  ]
+  const items2 = [
+    ["Anticipate Financial Needs", "Reconcile financials, inventory, and operations across multiple entities with a unified platform that provides real-time visibility and control.",],
+    ["Simplify Complex Inter-Company Operations.", "Streamline inter-company transactions, eliminations, and reporting with automated processes that ensure accuracy and compliance across your organization.",],
+    ["Consolidated Financial Reporting", "Generate comprehensive financial reports across all entities with a single, unified view.",],
+    ["Scalable Multi-Entity Architecture", "Build and manage a flexible, scalable infrastructure that supports your organization's growth and complexity.",],
+  ]
+  const items3 = [
+    ["Impact Analysis", "Reconcile financials, inventory, and operations across multiple entities with a unified platform that provides real-time visibility and control.",],
+    ["Simplify Complex Inter-Company Operations.", "Streamline inter-company transactions, eliminations, and reporting with automated processes that ensure accuracy and compliance across your organization.",],
+    ["Consolidated Financial Reporting", "Generate comprehensive financial reports across all entities with a single, unified view.",],
+    ["Scalable Multi-Entity Architecture", "Build and manage a flexible, scalable infrastructure that supports your organization's growth and complexity.",],
+  ]
+  const items4 = [
+    ["Compliance Management", "Reconcile financials, inventory, and operations across multiple entities with a unified platform that provides real-time visibility and control.",],
+    ["Simplify Complex Inter-Company Operations.", "Streamline inter-company transactions, eliminations, and reporting with automated processes that ensure accuracy and compliance across your organization.",],
+    ["Consolidated Financial Reporting", "Generate comprehensive financial reports across all entities with a single, unified view.",],
+    ["Scalable Multi-Entity Architecture", "Build and manage a flexible, scalable infrastructure that supports your organization's growth and complexity.",],
+  ]
+  const items5 = [
+    ["Market depth Analysis", "Reconcile financials, inventory, and operations across multiple entities with a unified platform that provides real-time visibility and control.",],
+    ["Simplify Complex Inter-Company Operations.", "Streamline inter-company transactions, eliminations, and reporting with automated processes that ensure accuracy and compliance across your organization.",],
+    ["Consolidated Financial Reporting", "Generate comprehensive financial reports across all entities with a single, unified view.",],
+    ["Scalable Multi-Entity Architecture", "Build and manage a flexible, scalable infrastructure that supports your organization's growth and complexity.",],
+  ]
   return (
     <section className="bg-white" id="solutions">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
@@ -483,42 +712,232 @@ function Solutions() {
           ))}
         </Stagger>
 
-        <div className="mt-20 grid items-center gap-20 lg:grid-cols-2">
-          <div className="divide-y divide-black/5 rounded-4xl border border-black/5 bg-white">
-            {[
-              "Consolidate & Manage Multiple Branches Or Companies",
-              "Simplify Complex Inter-Company Operations.",
-              "Consolidated Financial Reporting",
-              "Scalable Multi-Entity Architecture",
-            ].map((item, index) => (
-              <div key={item} className="p-8 lg:p-10">
-                <div className="flex items-start justify-between gap-6">
-                  <h3 className="max-w-xl text-xl font-semibold leading-8 tracking-tight">
-                    {item}
-                  </h3>
+        {currentItems === "Multi Business Entity" && (
+          <div className="mt-20 grid items-start gap-12 lg:grid-cols-2">
 
-                  <span className="mt-1 text-cobalt">
-                    +
-                  </span>
-                </div>
 
-                {/* {index === 1 && (
-                  <p className="mt-6 max-w-xl text-base leading-8 text-slate-600">
-                    Manage complex inventory operations, automate approvals,
-                    reconcile transactions and improve consistency across
-                    multiple business units.
-                  </p>
-                )} */}
+            <Accordion.Root
+              type="single"
+              collapsible
+              className="divide-y divide-black/10 border border-black/5 bg-white"
+            >
+              {items.map((item, index) => (
+                <Accordion.Item
+                  key={item[0]}
+                  value={`item-${index}`}
+                  className="p-4 lg:p-6"
+                >
+                  <Accordion.Trigger className="group flex w-full items-center justify-between py-6 text-left text-xl font-medium">
+                    {item[0]}
+
+                    <ChevronDown className="h-5 w-5 text-blue-600 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+                  </Accordion.Trigger>
+
+                  <Accordion.Content className="overflow-hidden text-slate-600 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+                    <p className="pb-6 leading-8">
+                      {item[1]}
+                    </p>
+                  </Accordion.Content>
+                </Accordion.Item>
+              ))}
+            </Accordion.Root>
+
+
+
+
+
+
+            <div className="hidden lg:block">
+              <div className="sticky top-28">
+                <img
+                  className="h-[520px] w-full rounded-4xl object-cover"
+                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1100&q=80"
+                  alt=""
+                />
               </div>
-            ))}
+            </div>
           </div>
+        )}
+        {currentItems === "Productivity Tools" && (
+          <div className="mt-20 grid items-start gap-12 lg:grid-cols-2">
 
-          <img
-            className="h-[340px] w-full rounded-4xl object-cover sm:h-[420px] lg:h-[520px]"
-            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1100&q=80"
-            alt=""
-          />
-        </div>
+
+            <Accordion.Root
+              type="single"
+              collapsible
+              className="divide-y divide-black/10 border border-black/5 bg-white"
+            >
+              {items2.map((item, index) => (
+                <Accordion.Item
+                  key={item[0]}
+                  value={`item-${index}`}
+                  className="p-4 lg:p-6"
+                >
+                  <Accordion.Trigger className="group flex w-full items-center justify-between py-6 text-left text-xl font-medium">
+                    {item[0]}
+
+                    <ChevronDown className="h-5 w-5 text-blue-600 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+                  </Accordion.Trigger>
+
+                  <Accordion.Content className="overflow-hidden text-slate-600 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+                    <p className="pb-6 leading-8">
+                      {item[1]}
+                    </p>
+                  </Accordion.Content>
+                </Accordion.Item>
+              ))}
+            </Accordion.Root>
+
+
+
+
+
+
+            <div className="hidden lg:block">
+              <div className="sticky top-28">
+                <img
+                  className="h-[520px] w-full rounded-4xl object-cover"
+                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1100&q=80"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>)}
+        {currentItems === "Data Management" && (
+          <div className="mt-20 grid items-start gap-12 lg:grid-cols-2">
+
+
+            <Accordion.Root
+              type="single"
+              collapsible
+              className="divide-y divide-black/10 border border-black/5 bg-white"
+            >
+              {items3.map((item, index) => (
+                <Accordion.Item
+                  key={item[0]}
+                  value={`item-${index}`}
+                  className="p-4 lg:p-6"
+                >
+                  <Accordion.Trigger className="group flex w-full items-center justify-between py-6 text-left text-xl font-medium">
+                    {item[0]}
+
+                    <ChevronDown className="h-5 w-5 text-blue-600 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+                  </Accordion.Trigger>
+
+                  <Accordion.Content className="overflow-hidden text-slate-600 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+                    <p className="pb-6 leading-8">
+                      {item[1]}
+                    </p>
+                  </Accordion.Content>
+                </Accordion.Item>
+              ))}
+            </Accordion.Root>
+
+
+
+
+
+
+            <div className="hidden lg:block">
+              <div className="sticky top-28">
+                <img
+                  className="h-[520px] w-full rounded-4xl object-cover"
+                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1100&q=80"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>)}
+        {currentItems === "Human Capital Management" && (
+          <div className="mt-20 grid items-start gap-12 lg:grid-cols-2">
+
+
+            <Accordion.Root
+              type="single"
+              collapsible
+              className="divide-y divide-black/10 border border-black/5 bg-white"
+            >
+              {items4.map((item, index) => (
+                <Accordion.Item
+                  key={item[0]}
+                  value={`item-${index}`}
+                  className="p-4 lg:p-6"
+                >
+                  <Accordion.Trigger className="group flex w-full items-center justify-between py-6 text-left text-xl font-medium">
+                    {item[0]}
+
+                    <ChevronDown className="h-5 w-5 text-blue-600 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+                  </Accordion.Trigger>
+
+                  <Accordion.Content className="overflow-hidden text-slate-600 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+                    <p className="pb-6 leading-8">
+                      {item[1]}
+                    </p>
+                  </Accordion.Content>
+                </Accordion.Item>
+              ))}
+            </Accordion.Root>
+
+
+
+
+
+
+            <div className="hidden lg:block">
+              <div className="sticky top-28">
+                <img
+                  className="h-[520px] w-full rounded-4xl object-cover"
+                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1100&q=80"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>)}
+        {currentItems === "Integration" && (
+          <div className="mt-20 grid items-start gap-12 lg:grid-cols-2">
+
+
+            <Accordion.Root
+              type="single"
+              collapsible
+              className="divide-y divide-black/10 border border-black/5 bg-white"
+            >
+              {items5.map((item, index) => (
+                <Accordion.Item
+                  key={item[0]}
+                  value={`item-${index}`}
+                  className="p-4 lg:p-6"
+                >
+                  <Accordion.Trigger className="group flex w-full items-center justify-between py-6 text-left text-xl font-medium">
+                    {item[0]}
+
+                    <ChevronDown className="h-5 w-5 text-blue-600 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+                  </Accordion.Trigger>
+
+                  <Accordion.Content className="overflow-hidden text-slate-600 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+                    <p className="pb-6 leading-8">
+                      {item[1]}
+                    </p>
+                  </Accordion.Content>
+                </Accordion.Item>
+              ))}
+            </Accordion.Root>
+
+
+
+
+
+
+            <div className="hidden lg:block">
+              <div className="sticky top-28">
+                <img
+                  className="h-[520px] w-full rounded-4xl object-cover"
+                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1100&q=80"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>)}
       </div>
 
       <div className="bg-slate-50"  >
@@ -751,8 +1170,8 @@ function Resources() {
           <div className="flex min-w-max border-b border-white/10">
 
             <button className={`cursor-pointer relative pb-6 pr-10 w-[50%] text-sm font-medium transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-blue-600 after:transition-transform after:duration-300 ${resource === "Press"
-                ? "text-white after:scale-x-100"
-                : "text-white/50 after:scale-x-0 hover:text-white"
+              ? "text-white after:scale-x-100"
+              : "text-white/50 after:scale-x-0 hover:text-white"
               }`} onClick={() => setResource("Press")}>
               Press
             </button>
@@ -835,9 +1254,9 @@ function News() {
   return (
     <section className="bg-[#F8FAFC]">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-32">
-        
+
         <div className="max-w-3xl">
-          
+
 
           <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
             See What's New
@@ -850,7 +1269,7 @@ function News() {
         </div>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-[1.05fr_1fr]">
-          
+
           <article className="group">
             <div className="overflow-hidden rounded-[2rem] border border-black/5">
               <img
@@ -922,9 +1341,9 @@ function News() {
 
         <div className="mt-20 overflow-hidden rounded-md bg-blue-600">
           <div className="flex flex-col gap-10 px-8 py-10 text-white sm:px-10 lg:flex-row lg:items-center lg:justify-between lg:px-14 lg:py-14">
-            
+
             <div className="max-w-4xl text-start md:text-center">
-             
+
 
               <h3 className="text-2xl font-semibold leading-tight tracking-tight sm:text-3xl">
                 Jan 28th: Implementing Cloud ERP in Your Business
@@ -958,9 +1377,9 @@ function PartnerEcosystem() {
   return (
     <section className="bg-white">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-32">
-        
+
         <div className="mx-auto max-w-3xl text-center">
-          
+
 
           <h2 className=" text-3xl font-semibold tracking-tight md:text-4xl">
             Accelerate Success With Our Extensive Partner Ecosystem
@@ -1052,12 +1471,12 @@ function Footer() {
   return (
     <>
       <section className="relative overflow-hidden bg-[#0b204e] text-white">
-        
+
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_35%)]" />
 
         <div className="relative mx-auto max-w-5xl px-6 py-20 text-center lg:px-8 lg:py-22">
-          
-          
+
+
 
           <h2 className="mx-auto max-w-4xl text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
             Build Your Own Fowgate Story
@@ -1085,9 +1504,9 @@ function Footer() {
 
       <footer className="bg-[#040429] text-white">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          
+
           <div className="grid gap-16 border-b border-white/10 pb-16 lg:grid-cols-[220px_1fr]">
-            
+
             <div>
               <div className="inline-flex rounded-md bg-blue-600 px-5 py-3 text-lg font-semibold tracking-tight shadow-[0_10px_30px_rgba(37,99,235,0.3)]">
                 Fowgate
@@ -1113,7 +1532,7 @@ function Footer() {
             <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5">
               {Object.entries(groups).map(([title, links]) => (
                 <div key={title}>
-                  
+
                   <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">
                     {title}
                   </h3>
@@ -1137,7 +1556,7 @@ function Footer() {
           </div>
 
           <div className="flex flex-col items-center justify-center gap-4 pt-8 text-sm text-white/40 md:flex-row">
-            
+
             <p>
               © 2026 Fowgate. All rights reserved.
             </p>
@@ -1154,10 +1573,16 @@ function Footer() {
 
 
 export default function Home() {
+  const [openMobileNav, setOpenMobileNav] = useState(false);
   return (
     <main className="min-h-screen">
-      <Header />
-      <SubNav />
+      <Header
+        openMobileNav={openMobileNav}
+        setOpenMobileNav={setOpenMobileNav}
+      />
+      <MobileNav openMobileNav={openMobileNav} setOpenMobileNav={setOpenMobileNav} />
+
+      <SubNav openMobileNav={openMobileNav} />
       <ProductIntro />
       <Solutions />
       <Stories />
