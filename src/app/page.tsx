@@ -1,10 +1,14 @@
 "use client";
 
 import { Reveal, Stagger, StaggerItem } from "./components/motion-wrapper";
+import Button from "./components/Button";
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import * as Accordion from "@radix-ui/react-accordion";
 import { b, pre } from "framer-motion/client";
+import HomeHero from "./components/HomeHero";
+import Header from "./components/Header";
+import MobileNav from "./components/MobileNav";
 const navItems = ["Product", "Solutions", "Resources", "Learning", "Partners", "About", "Contact"];
 const industries = ["Oil, Gas & Energy", "Sales Distribution", "Manufacturing", "Food & Hospitality", "Government", "Real Estate", "Professional Services", "Agribusiness", "Construction"];
 const apps = ["Financial Management", "Human Capital Management", "Payroll Software", "Project Management", "CRM Software", "Invoicing Management", "Supply Chain Management", "Warehouse Management"];
@@ -147,32 +151,7 @@ const partners = [
 
 
 
-function Button({
-  children,
-  variant = "primary",
 
-}: {
-  children: React.ReactNode;
-  variant?: "primary" | "light" | "outline";
-  others?: string;
-}) {
-  const styles = {
-    primary:
-      "bg-cobalt text-white  bg-blue-700 border border-transparent",
-    light:
-      "bg-white text-slate-700 hover:bg-slate-100 border border-transparent",
-    outline:
-      "border border-white/15 bg-white/5 text-white  hover:text-cobalt",
-  };
-
-  return (
-    <button
-      className={`inline-flex cursor-pointer h-10 items-center justify-center rounded-md px-4 text-sm font-medium transition-all duration-300 ${styles[variant]} `}
-    >
-      {children}
-    </button>
-  );
-}
 function DashboardMockup() {
   return (
     <div className="mx-auto mt-10 w-full overflow-hidden rounded-3xl border border-black/5 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.06)]">
@@ -210,358 +189,357 @@ function DashboardMockup() {
     </div>
   );
 }
+//  function Header({
+//   openMobileNav,
+//   setOpenMobileNav,
+// }: {
+//   openMobileNav: boolean;
+//   setOpenMobileNav: React.Dispatch<React.SetStateAction<boolean>>;
+// }) {
+
+//   const [activeNav, setActiveNav] = useState("");
+
+//   return (
+//     <header className="relative overflow-visible bg-black text-white">
+//       <nav className="relative z-20 border-b  border-white/5 bg-black/40 backdrop-blur-xl">
+//         <div className="mx-auto flex h-15 max-w-7xl items-center justify-between px-6 lg:px-8">
+//           <div className="bg-blue">
+//             <a
+//               className="rounded-md text-white bg-blue-600 px-4 py-2 text-sm font-semibold tracking-tight"
+//               href="#"
+//             >
+//               Fowgate
+//             </a>
+//           </div>
+
+//           <div className="hidden h-full items-center gap-8 lg:flex">
+//             {navItems.map((item) => (
+//               <div
+//                 key={item}
+//                 className={`group relative flex h-full items-center ${activeNav === item ? "text-white" : ""
+//                   }`}
+//               >
+//                 <a
+//                   className={`flex h-full items-center border-b-2 text-sm font-medium transition-all ease-linear duration-600 ${activeNav === item
+//                     ? "text-white"
+//                     : "border-transparent text-white/70 hover:border-blue-600 hover:text-white"
+//                     }`}
+//                   href="#"
+//                   onClick={() => setActiveNav(item)}
+//                 >
+//                   {item}
+//                 </a>
+
+//                 {item === "Solutions" && (
+//                   <div className="absolute left-1/2 top-full hidden w-210 -translate-x-1/2 border border-black/5 bg-white p-10 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
+//                     <div className="grid grid-cols-[1fr_1.3fr] gap-16">
+//                       <div>
+//                         <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+//                           By Industry
+//                         </h3>
+
+//                         <div className="grid grid-cols-2 gap-x-10 gap-y-5">
+//                           {industries.map((item) => (
+//                             <a
+//                               key={item}
+//                               href="#"
+//                               className="text-sm text-slate-600 transition hover:text-black"
+//                             >
+//                               {item}
+//                             </a>
+//                           ))}
+//                         </div>
+//                       </div>
+
+//                       <div>
+//                         <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+//                           By Business Application
+//                         </h3>
+
+//                         <div className="grid grid-cols-2 gap-x-10 gap-y-5">
+//                           {apps.map((item) => (
+//                             <a
+//                               key={item}
+//                               href="#"
+//                               className="text-sm text-slate-600 transition hover:text-black"
+//                             >
+//                               {item}
+//                             </a>
+//                           ))}
+//                         </div>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 )}
+//                 {item === "Product" && (
+//                   <div className="absolute left-1/2 top-full hidden w-60 -translate-x-1/2  border border-black/5 bg-white p-8 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
+//                     <div className="grid gap-16">
+//                       <div>
+//                         <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+//                           Business Suites
+//                         </h3>
+
+//                         <div className="grid gap-x-10 gap-y-5">
+//                           {businessSuites.map((item) => (
+//                             <a
+//                               key={item}
+//                               href="#"
+//                               className="text-sm text-slate-600 transition hover:text-black"
+//                             >
+//                               {item}
+//                             </a>
+//                           ))}
+//                         </div>
+//                       </div>
+
+//                     </div>
+//                   </div>
+//                 )}
+//                 {item === "Resources" && (
+//                   <div className="absolute left-1/2 top-full hidden w-60 -translate-x-1/2  border border-black/5 bg-white p-8 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
+//                     <div className="grid   gap-16">
+
+//                       <div>
+//                         <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+//                           Resources Overview
+//                         </h3>
+
+//                         <div className="grid   gap-x-10 gap-y-5">
+//                           {resourcesOverview.map((item) => (
+//                             <a
+//                               key={item}
+//                               href="#"
+//                               className="text-sm text-slate-600 transition hover:text-black"
+//                             >
+//                               {item}
+//                             </a>
+//                           ))}
+//                         </div>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 )}
+//                 {item === "Partners" && (
+//                   <div className="absolute left-1/2 top-full hidden w-60 -translate-x-1/2  border border-black/5 bg-white p-8 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
+//                     <div className="grid gap-16">
+
+
+//                       <div>
+//                         <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+//                           Partners Overview
+//                         </h3>
+
+//                         <div className="grid  gap-x-10 gap-y-5">
+//                           {partnersOverview.map((item) => (
+//                             <a
+//                               key={item}
+//                               href="#"
+//                               className="text-sm text-slate-600 transition hover:text-black"
+//                             >
+//                               {item}
+//                             </a>
+//                           ))}
+//                         </div>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 )}
+//                 {item === "About" && (
+//                   <div className="absolute left-1/2 top-full hidden w-60 -translate-x-1/2  border border-black/5 bg-white p-8 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
+//                     <div className="grid gap-16">
+
+
+//                       <div>
+//                         <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+//                           Company Overview
+//                         </h3>
+
+//                         <div className="grid   gap-x-10 gap-y-5">
+//                           {companyOverview.map((item) => (
+//                             <a
+//                               key={item}
+//                               href="#"
+//                               className="text-sm text-slate-600 transition hover:text-black"
+//                             >
+//                               {item}
+//                             </a>
+//                           ))}
+//                         </div>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 )}
+//               </div>
+//             ))}
+//           </div>
+
+//           <div className="text-lg hidden md:block text-white/70">文</div>
+//           <div
+//             className="text-2xl md:hidden text-white/70 hover:text-blue-600 transition-all duration-200 cursor-pointer"
+//             onClick={() => setOpenMobileNav((prev) => !prev)}
+//           >
+//             {openMobileNav ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+//           </div>
+
+
+//         </div>
+
+
+//       </nav>
+
+//       <section className="relative overflow-hidden">
+//         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.28),transparent_35%)]" />
+
+//         <div className="mx-auto flex  min-h-[85vh] max-w-7xl items-center px-6 py-28 lg:px-8 lg:py-36">
+//           <Stagger className="max-w-3xl">
+//             <StaggerItem>
+//               <h1 className="text-balance text-5xl font-semibold leading-[1.02] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+//                 Powering Businesses
+//                 <br />
+//                 Across <span className="text-cobalt">Africa</span>
+//               </h1>
+//             </StaggerItem>
+
+//             <StaggerItem>
+//               <p className="mt-8 max-w-2xl text-base sm:text-lg sm:leading-8 leading-7 text-white/70 lg:text-xl">
+//                 Transform your business processes with intelligent AI-driven
+//                 workflow solutions built for seamless collaboration and enterprise
+//                 productivity.
+//               </p>
+//             </StaggerItem>
+
+//             <StaggerItem>
+//               <div className="mt-14 flex flex-wrap gap-x-6 gap-y-4 text-sm text-white/60">
+//                 {[
+//                   "Cloud ERP",
+//                   "Business Intelligence",
+//                   "IOT",
+//                   "Productivity Tools",
+//                   "Data Lake",
+//                 ].map((item) => (
+//                   <span key={item}>{item}</span>
+//                 ))}
+//               </div>
+//             </StaggerItem>
+//           </Stagger>
+//         </div>
+//       </section>
+//     </header>
+//   );
+// }
+
+// function MobileNav({ openMobileNav, setOpenMobileNav }: { openMobileNav: boolean, setOpenMobileNav: React.Dispatch<React.SetStateAction<boolean>> }) {
+//   return (
+//     <div
+//       className={`fixed inset-0 z-9999 w-full bg-white transition-all duration-500 md:hidden ${openMobileNav
+//         ? "translate-x-0 opacity-100"
+//         : "translate-x-full opacity-0 pointer-events-none"
+//         }`}
+//     >
+
+//       <div className="flex h-full flex-col">
+
+//         <div className="flex h-20  items-center justify-between border-b border-black/5 px-6">
+
+//           <div className="text-xl font-semibold text-blue-600">
+//             Fowgate
+//           </div>
+
+//           <button onClick={() => setOpenMobileNav(false)}>
+//             <X className="h-7 w-7 cursor-pointer hover:text-blue-600 transition duration-300" />
+//           </button>
+
+//         </div>
+
+//         <div className="flex-1 overflow-y-auto px-6 pb-10">
+//           <div className="flex flex-col pt-10 ">
+
+//             <Accordion.Root
+//               type="multiple"
+//               className="flex flex-col"
+//             >
+
+//               {mobileNavItems.map((item) => (
+
+//                 <Accordion.Item
+//                   key={item.title}
+//                   value={item.title}
+//                   className="border-b border-black/10"
+//                 >
+
+//                   <Accordion.Trigger className="group flex w-full items-center justify-between py-6 text-left text-2xl font-medium text-black">
+
+//                     {item.title}
+
+//                     <ChevronDown className="h-5 w-5 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+
+//                   </Accordion.Trigger>
+
+//                   <Accordion.Content className="overflow-hidden pb-6 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+
+//                     <Accordion.Root
+//                       type="multiple"
+//                       className="flex flex-col gap-2"
+//                     >
+
+//                       {item.sections.map((section) => (
+
+//                         <Accordion.Item
+//                           key={section.heading}
+//                           value={section.heading}
+//                           className="rounded-2xl bg-slate-50 px-5"
+//                         >
+
+//                           <Accordion.Trigger className="group flex w-full items-center justify-between py-5 text-left text-lg font-medium text-slate-900">
+
+//                             {section.heading}
+
+//                             <ChevronDown className="h-4 w-4 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+
+//                           </Accordion.Trigger>
+
+//                           <Accordion.Content className="overflow-hidden pb-5 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+
+//                             <div className="flex flex-col gap-4 pl-2">
+
+//                               {section.links.map((link) => (
+//                                 <a
+//                                   key={link}
+//                                   href="#"
+//                                   className="text-base font-normal text-slate-600 transition hover:text-black"
+//                                 >
+//                                   {link}
+//                                 </a>
+//                               ))}
+
+//                             </div>
+
+//                           </Accordion.Content>
+
+//                         </Accordion.Item>
+
+//                       ))}
+
+//                     </Accordion.Root>
+
+//                   </Accordion.Content>
+
+//                 </Accordion.Item>
+
+//               ))}
+
+//             </Accordion.Root>
+
+//           </div>
+//         </div>
+//       </div>
+
+
+
+//     </div>
+//   );
+// }
 
-function Header({
-  openMobileNav,
-  setOpenMobileNav,
-}: {
-  openMobileNav: boolean;
-  setOpenMobileNav: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
-
-  const [activeNav, setActiveNav] = useState("");
-
-  return (
-    <header className="relative overflow-visible bg-black text-white">
-      <nav className="relative z-20 border-b  border-white/5 bg-black/40 backdrop-blur-xl">
-        <div className="mx-auto flex h-15 max-w-7xl items-center justify-between px-6 lg:px-8">
-          <div className="bg-blue">
-            <a
-              className="rounded-md text-white bg-blue-600 px-4 py-2 text-sm font-semibold tracking-tight"
-              href="#"
-            >
-              Fowgate
-            </a>
-          </div>
-
-          <div className="hidden h-full items-center gap-8 lg:flex">
-            {navItems.map((item) => (
-              <div
-                key={item}
-                className={`group relative flex h-full items-center ${activeNav === item ? "text-white" : ""
-                  }`}
-              >
-                <a
-                  className={`flex h-full items-center border-b-2 text-sm font-medium transition-all ease-linear duration-600 ${activeNav === item
-                    ? "text-white"
-                    : "border-transparent text-white/70 hover:border-blue-600 hover:text-white"
-                    }`}
-                  href="#"
-                  onClick={() => setActiveNav(item)}
-                >
-                  {item}
-                </a>
-
-                {item === "Solutions" && (
-                  <div className="absolute left-1/2 top-full hidden w-210 -translate-x-1/2 border border-black/5 bg-white p-10 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
-                    <div className="grid grid-cols-[1fr_1.3fr] gap-16">
-                      <div>
-                        <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
-                          By Industry
-                        </h3>
-
-                        <div className="grid grid-cols-2 gap-x-10 gap-y-5">
-                          {industries.map((item) => (
-                            <a
-                              key={item}
-                              href="#"
-                              className="text-sm text-slate-600 transition hover:text-black"
-                            >
-                              {item}
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div>
-                        <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
-                          By Business Application
-                        </h3>
-
-                        <div className="grid grid-cols-2 gap-x-10 gap-y-5">
-                          {apps.map((item) => (
-                            <a
-                              key={item}
-                              href="#"
-                              className="text-sm text-slate-600 transition hover:text-black"
-                            >
-                              {item}
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                {item === "Product" && (
-                  <div className="absolute left-1/2 top-full hidden w-60 -translate-x-1/2  border border-black/5 bg-white p-8 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
-                    <div className="grid gap-16">
-                      <div>
-                        <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
-                          Business Suites
-                        </h3>
-
-                        <div className="grid gap-x-10 gap-y-5">
-                          {businessSuites.map((item) => (
-                            <a
-                              key={item}
-                              href="#"
-                              className="text-sm text-slate-600 transition hover:text-black"
-                            >
-                              {item}
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                )}
-                {item === "Resources" && (
-                  <div className="absolute left-1/2 top-full hidden w-60 -translate-x-1/2  border border-black/5 bg-white p-8 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
-                    <div className="grid   gap-16">
-
-                      <div>
-                        <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
-                          Resources Overview
-                        </h3>
-
-                        <div className="grid   gap-x-10 gap-y-5">
-                          {resourcesOverview.map((item) => (
-                            <a
-                              key={item}
-                              href="#"
-                              className="text-sm text-slate-600 transition hover:text-black"
-                            >
-                              {item}
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                {item === "Partners" && (
-                  <div className="absolute left-1/2 top-full hidden w-60 -translate-x-1/2  border border-black/5 bg-white p-8 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
-                    <div className="grid gap-16">
-
-
-                      <div>
-                        <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
-                          Partners Overview
-                        </h3>
-
-                        <div className="grid  gap-x-10 gap-y-5">
-                          {partnersOverview.map((item) => (
-                            <a
-                              key={item}
-                              href="#"
-                              className="text-sm text-slate-600 transition hover:text-black"
-                            >
-                              {item}
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                {item === "About" && (
-                  <div className="absolute left-1/2 top-full hidden w-60 -translate-x-1/2  border border-black/5 bg-white p-8 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
-                    <div className="grid gap-16">
-
-
-                      <div>
-                        <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
-                          Company Overview
-                        </h3>
-
-                        <div className="grid   gap-x-10 gap-y-5">
-                          {companyOverview.map((item) => (
-                            <a
-                              key={item}
-                              href="#"
-                              className="text-sm text-slate-600 transition hover:text-black"
-                            >
-                              {item}
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-
-          <div className="text-lg hidden md:block text-white/70">文</div>
-          <div
-            className="text-2xl md:hidden text-white/70 hover:text-blue-600 transition-all duration-200 cursor-pointer"
-            onClick={() => setOpenMobileNav((prev) => !prev)}
-          >
-            {openMobileNav ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
-          </div>
-
-
-        </div>
-
-
-      </nav>
-
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.28),transparent_35%)]" />
-
-        <div className="mx-auto flex  min-h-[85vh] max-w-7xl items-center px-6 py-28 lg:px-8 lg:py-36">
-          <Stagger className="max-w-3xl">
-            <StaggerItem>
-              <h1 className="text-balance text-5xl font-semibold leading-[1.02] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-                Powering Businesses
-                <br />
-                Across <span className="text-cobalt">Africa</span>
-              </h1>
-            </StaggerItem>
-
-            <StaggerItem>
-              <p className="mt-8 max-w-2xl text-base sm:text-lg sm:leading-8 leading-7 text-white/70 lg:text-xl">
-                Transform your business processes with intelligent AI-driven
-                workflow solutions built for seamless collaboration and enterprise
-                productivity.
-              </p>
-            </StaggerItem>
-
-            <StaggerItem>
-              <div className="mt-14 flex flex-wrap gap-x-6 gap-y-4 text-sm text-white/60">
-                {[
-                  "Cloud ERP",
-                  "Business Intelligence",
-                  "IOT",
-                  "Productivity Tools",
-                  "Data Lake",
-                ].map((item) => (
-                  <span key={item}>{item}</span>
-                ))}
-              </div>
-            </StaggerItem>
-          </Stagger>
-        </div>
-      </section>
-    </header>
-  );
-}
-
-function MobileNav({ openMobileNav, setOpenMobileNav }: { openMobileNav: boolean, setOpenMobileNav: React.Dispatch<React.SetStateAction<boolean>> }) {
-  return (
-    <div
-      className={`fixed inset-0 z-9999 w-full bg-white transition-all duration-500 md:hidden ${openMobileNav
-        ? "translate-x-0 opacity-100"
-        : "translate-x-full opacity-0 pointer-events-none"
-        }`}
-    >
-
-      <div className="flex h-full flex-col">
-
-        <div className="flex h-20  items-center justify-between border-b border-black/5 px-6">
-
-          <div className="text-xl font-semibold text-blue-600">
-            Fowgate
-          </div>
-
-          <button onClick={() => setOpenMobileNav(false)}>
-            <X className="h-7 w-7 cursor-pointer hover:text-blue-600 transition duration-300" />
-          </button>
-
-        </div>
-
-        <div className="flex-1 overflow-y-auto px-6 pb-10">
-          <div className="flex flex-col pt-10 ">
-
-            <Accordion.Root
-              type="multiple"
-              className="flex flex-col"
-            >
-
-              {mobileNavItems.map((item) => (
-
-                <Accordion.Item
-                  key={item.title}
-                  value={item.title}
-                  className="border-b border-black/10"
-                >
-
-                  <Accordion.Trigger className="group flex w-full items-center justify-between py-6 text-left text-2xl font-medium text-black">
-
-                    {item.title}
-
-                    <ChevronDown className="h-5 w-5 transition-transform duration-300 group-data-[state=open]:rotate-180" />
-
-                  </Accordion.Trigger>
-
-                  <Accordion.Content className="overflow-hidden pb-6 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-
-                    <Accordion.Root
-                      type="multiple"
-                      className="flex flex-col gap-2"
-                    >
-
-                      {item.sections.map((section) => (
-
-                        <Accordion.Item
-                          key={section.heading}
-                          value={section.heading}
-                          className="rounded-2xl bg-slate-50 px-5"
-                        >
-
-                          <Accordion.Trigger className="group flex w-full items-center justify-between py-5 text-left text-lg font-medium text-slate-900">
-
-                            {section.heading}
-
-                            <ChevronDown className="h-4 w-4 transition-transform duration-300 group-data-[state=open]:rotate-180" />
-
-                          </Accordion.Trigger>
-
-                          <Accordion.Content className="overflow-hidden pb-5 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-
-                            <div className="flex flex-col gap-4 pl-2">
-
-                              {section.links.map((link) => (
-                                <a
-                                  key={link}
-                                  href="#"
-                                  className="text-base font-normal text-slate-600 transition hover:text-black"
-                                >
-                                  {link}
-                                </a>
-                              ))}
-
-                            </div>
-
-                          </Accordion.Content>
-
-                        </Accordion.Item>
-
-                      ))}
-
-                    </Accordion.Root>
-
-                  </Accordion.Content>
-
-                </Accordion.Item>
-
-              ))}
-
-            </Accordion.Root>
-
-          </div>
-        </div>
-      </div>
-
-
-
-    </div>
-  );
-}
-9
 function SubNav({ openMobileNav }: { openMobileNav: boolean }) {
   const [activeSubNav, setActiveSubNav] = useState("");
   return (
@@ -654,7 +632,7 @@ function Solutions() {
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const currentItems = tabs.find((tab) => tab === activeTab);
   const [mobileSolutions, setMobileSolutions] = useState(true);
-  const [openMenu,setOpenMenu]= useState(false)
+  const [openMenu, setOpenMenu] = useState(false)
   const items = [
     ["Consolidate & Manage Multiple Branches Or Companies", "Reconcile financials, inventory, and operations across multiple entities with a unified platform that provides real-time visibility and control.",],
     ["Simplify Complex Inter-Company Operations.", "Streamline inter-company transactions, eliminations, and reporting with automated processes that ensure accuracy and compliance across your organization.",],
@@ -714,51 +692,50 @@ function Solutions() {
           ))}
         </Stagger>
 
-    
-  <Stagger className="relative mt-12 flex items-center justify-between gap-3 md:hidden">
-    
-    <div className="">
-      <h3 className="text-lg border-b-2 border-blue-600">
-        {activeTab}
-      </h3>
-    </div>
 
-    <div
-      className="flex cursor-pointer items-center rounded-md border-2 border-blue-600 px-2 py-1"
-      onClick={() => setOpenMenu((prev) => !prev)}
-    >
-      <p className="text-blue-600">
-        More
-      </p>
+        <Stagger className="relative mt-12 flex items-center justify-between gap-3 md:hidden">
 
-      <ChevronDown
-        className={`h-5 w-5 transition-transform duration-300 ${
-          openMenu ? "rotate-180" : ""
-        }`}
-      />
-    </div>
+          <div className="">
+            <h3 className="text-lg border-b-2 border-blue-600">
+              {activeTab}
+            </h3>
+          </div>
 
-    {openMenu && (
-      <div className="absolute right-0 top-14 z-50 rounded-md border border-slate-200 bg-white p-4 text-black shadow-lg">
-        
-        {tabs.map((tab) => (
-          <p
-            key={tab}
-            className="cursor-pointer rounded-md px-4 py-2 hover:bg-slate-100"
-            onClick={() => {
-              setActiveTab(tab);
-              setOpenMenu(false);
-            }}
+          <div
+            className="flex cursor-pointer items-center rounded-md border-2 border-blue-600 px-2 py-1"
+            onClick={() => setOpenMenu((prev) => !prev)}
           >
-            {tab}
-          </p>
-        ))}
+            <p className="text-blue-600">
+              More
+            </p>
 
-      </div>
-    )}
+            <ChevronDown
+              className={`h-5 w-5 transition-transform duration-300 ${openMenu ? "rotate-180" : ""
+                }`}
+            />
+          </div>
 
-  </Stagger>
- 
+          {openMenu && (
+            <div className="absolute right-0 top-14 z-50 rounded-md border border-slate-200 bg-white p-4 text-black shadow-lg">
+
+              {tabs.map((tab) => (
+                <p
+                  key={tab}
+                  className="cursor-pointer rounded-md px-4 py-2 hover:bg-slate-100"
+                  onClick={() => {
+                    setActiveTab(tab);
+                    setOpenMenu(false);
+                  }}
+                >
+                  {tab}
+                </p>
+              ))}
+
+            </div>
+          )}
+
+        </Stagger>
+
 
 
         {currentItems === "Multi Business Entity" && (
@@ -1625,12 +1602,10 @@ export default function Home() {
   const [openMobileNav, setOpenMobileNav] = useState(false);
   return (
     <main className="min-h-screen">
-      <Header
-        openMobileNav={openMobileNav}
-        setOpenMobileNav={setOpenMobileNav}
-      />
-      <MobileNav openMobileNav={openMobileNav} setOpenMobileNav={setOpenMobileNav} />
 
+      <Header openMobileNav={openMobileNav} setOpenMobileNav={setOpenMobileNav} />
+      <MobileNav openMobileNav={openMobileNav} setOpenMobileNav={setOpenMobileNav} />
+      <HomeHero />
       <SubNav openMobileNav={openMobileNav} />
       <ProductIntro />
       <Solutions />
