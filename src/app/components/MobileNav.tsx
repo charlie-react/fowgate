@@ -175,7 +175,7 @@ export default function MobileNav({ openMobileNav, setOpenMobileNav }: { openMob
                               {section.links.map((link) => (
                                 <a
                                   key={link}
-                                  href="#"
+                                  href={`${link === "Cloud ERP Solutions"?"/product/cloud-erp-solutions":""}`}
                                   className="text-base font-normal text-slate-600 transition hover:text-black"
                                 >
                                   {link}
