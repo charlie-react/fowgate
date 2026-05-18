@@ -99,6 +99,8 @@ const mobileNavItems = [
 ];
 
 export default function MobileNav({ openMobileNav, setOpenMobileNav }: { openMobileNav: boolean, setOpenMobileNav: React.Dispatch<React.SetStateAction<boolean>> }) {
+
+   
   return (
     <div
       className={`fixed inset-0 z-9999 w-full bg-white transition-all duration-500 md:hidden ${openMobileNav

@@ -24,17 +24,14 @@ export default function Header({
 
   const [activeNav, setActiveNav] = useState("");
 
+  console.log({openMobileNav})
+
   return (
-    <header className="relative overflow-visible bg-black text-white">
-      <nav className="relative z-20 border-b  border-white/5 bg-black/40 backdrop-blur-xl">
-        <div className="mx-auto flex h-15 max-w-7xl items-center justify-between px-6 lg:px-8">
-          <div className="bg-blue">
-            <a
-              className="rounded-md text-white bg-blue-600 px-4 py-2 text-sm font-semibold tracking-tight"
-              href="#"
-            >
-              Fowgate
-            </a>
+    <header className="absolute inset-x-0 top-0 z-50 bg-black/60 text-white">
+      <nav className="border-b border-white/5">
+        <div className="mx-auto flex h-15 max-w-7xl items-center justify-between px-6 lg:px-14">
+          <div className="">
+            <img src={"/fowgate.png"} className="w-30"/>
           </div>
 
           <div className="hidden h-full items-center gap-8 lg:flex">
@@ -56,19 +53,19 @@ export default function Header({
                 </a>
 
                 {item === "Solutions" && (
-                  <div className="absolute left-1/2 top-full hidden w-210 -translate-x-1/2 border border-black/5 bg-white p-10 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
-                    <div className="grid grid-cols-[1fr_1.3fr] gap-16">
+                  <div className="absolute left-89 top-full hidden w-180 -translate-x-1/2 border border-black/5 bg-white px-3 py-3 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:flex justify-center items-center">
+                    <div className="grid grid-cols-[1fr_1.3fr] gap-6">
                       <div>
-                        <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+                        <h3 className="mb-3 mt-3 text-sm font-bold text-black">
                           By Industry
                         </h3>
 
-                        <div className="grid grid-cols-2 gap-x-10 gap-y-5">
+                        <div className="grid grid-cols-2 gap-x-10 gap-y-2">
                           {industries.map((item) => (
                             <a
                               key={item}
                               href="#"
-                              className="text-sm text-slate-600 transition hover:text-black"
+                              className="text-sm text-slate-600 transition hover:text-blue-600"
                             >
                               {item}
                             </a>
@@ -77,16 +74,16 @@ export default function Header({
                       </div>
 
                       <div>
-                        <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+                        <h3 className="mb-3 mt-3 text-sm font-bold text-black">
                           By Business Application
                         </h3>
 
-                        <div className="grid grid-cols-2 gap-x-10 gap-y-5">
+                        <div className="grid grid-cols-2 gap-x-10 gap-y-2  ">
                           {apps.map((item) => (
                             <a
                               key={item}
                               href="#"
-                              className="text-sm text-slate-600 transition hover:text-black"
+                              className="text-sm text-slate-600 transition hover:text-blue-600 w-full "
                             >
                               {item}
                             </a>
@@ -97,19 +94,19 @@ export default function Header({
                   </div>
                 )}
                 {item === "Product" && (
-                  <div className="absolute left-1/2 top-full hidden w-60 -translate-x-1/2  border border-black/5 bg-white p-8 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
-                    <div className="grid gap-16">
+                  <div className="absolute left-22 top-full hidden w-45 -translate-x-1/2  border border-black/5 bg-white px-3 py-3 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:flex justify-center items-center">
+                    <div className="grid">
                       <div>
-                        <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+                        <h3 className="mb-3 text-sm font-bold text-black">
                           Business Suites
                         </h3>
 
-                        <div className="grid gap-x-10 gap-y-5">
+                        <div className="grid gap-y-1">
                           {businessSuites.map((item, index) => (
                             <a
                               key={item}
-                              href={`${index===0?"/product/cloud-erp-solutions":" "}`}
-                              className="text-sm text-slate-600 transition hover:text-black"
+                              href={`${index === 0 ? "/product/cloud-erp-solutions" : " "}`}
+                              className="text-sm text-slate-600 transition hover:text-blue-600"
                             >
                               {item}
                             </a>
@@ -121,20 +118,20 @@ export default function Header({
                   </div>
                 )}
                 {item === "Resources" && (
-                  <div className="absolute left-1/2 top-full hidden w-60 -translate-x-1/2  border border-black/5 bg-white p-8 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
-                    <div className="grid   gap-16">
+                  <div className="absolute left-22 top-full hidden w-45 -translate-x-1/2  border border-black/5 bg-white px-4 py-3 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:flex justify-center items-center">
+                    <div className="grid   gap-6">
 
                       <div>
-                        <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+                        <h3 className="mb-3  text-sm font-bold text-black">
                           Resources Overview
                         </h3>
 
-                        <div className="grid   gap-x-10 gap-y-5">
+                        <div className="gridgap-y-1">
                           {resourcesOverview.map((item) => (
                             <a
                               key={item}
                               href="#"
-                              className="text-sm text-slate-600 transition hover:text-black"
+                              className="text-sm text-slate-600 transition hover:text-blue-600"
                             >
                               {item}
                             </a>
@@ -145,21 +142,21 @@ export default function Header({
                   </div>
                 )}
                 {item === "Partners" && (
-                  <div className="absolute left-1/2 top-full hidden w-60 -translate-x-1/2  border border-black/5 bg-white p-8 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
-                    <div className="grid gap-16">
+                  <div className="absolute left-22 top-full hidden w-45 -translate-x-1/2  border border-black/5 bg-white px-3 py-3 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:flex justify-center items-center">
+                    <div className="grid gap-6">
 
 
                       <div>
-                        <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+                        <h3 className="mb-3 text-sm font-bold text-black">
                           Partners Overview
                         </h3>
 
-                        <div className="grid  gap-x-10 gap-y-5">
+                        <div className="grid gap-y-1">
                           {partnersOverview.map((item) => (
                             <a
                               key={item}
                               href="#"
-                              className="text-sm text-slate-600 transition hover:text-black"
+                              className="text-sm text-slate-600 transition hover:text-blue-600"
                             >
                               {item}
                             </a>
@@ -170,21 +167,21 @@ export default function Header({
                   </div>
                 )}
                 {item === "About" && (
-                  <div className="absolute left-1/2 top-full hidden w-60 -translate-x-1/2  border border-black/5 bg-white p-8 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
-                    <div className="grid gap-16">
+                  <div className="absolute left-22 top-full hidden w-45 -translate-x-1/2  border border-black/5 bg-white px-3 py-3 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:flex justify-center items-center">
+                    <div className="grid gap-6">
 
 
                       <div>
-                        <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+                        <h3 className="mb-3 text-sm font-bold text-black">
                           Company Overview
                         </h3>
 
-                        <div className="grid   gap-x-10 gap-y-5">
+                        <div className="grid gap-y-1">
                           {companyOverview.map((item) => (
                             <a
                               key={item}
                               href="#"
-                              className="text-sm text-slate-600 transition hover:text-black"
+                              className="text-sm text-slate-600 transition hover:text-blue-600"
                             >
                               {item}
                             </a>

@@ -9,6 +9,7 @@ import { b, pre } from "framer-motion/client";
 import HomeHero from "./components/HomeHero";
 import Header from "./components/Header";
 import MobileNav from "./components/MobileNav";
+import Combo from "./components/Combo";
 const navItems = ["Product", "Solutions", "Resources", "Learning", "Partners", "About", "Contact"];
 const industries = ["Oil, Gas & Energy", "Sales Distribution", "Manufacturing", "Food & Hospitality", "Government", "Real Estate", "Professional Services", "Agribusiness", "Construction"];
 const apps = ["Financial Management", "Human Capital Management", "Payroll Software", "Project Management", "CRM Software", "Invoicing Management", "Supply Chain Management", "Warehouse Management"];
@@ -111,13 +112,13 @@ const mobileNavItems = [
     ],
   },
 ];
-const subNavItems = ["Overview", "Solutions", "Customer Stories", "Integrations", "Resources", "What's New", "Getting Started"];
+
 
 
 
 const tabs = ["Multi Business Entity", "Productivity Tools", "Data Management", "Human Capital Management", "Integration"];
 
-const logos = [{ companyName: "Nestle", text: "Nestlé relies on Fowgate Business Cloud to streamline multi-warehouse inventory, supply chain, and sales" }, { "companyName": "Uber", text: "Uber drivers use Fowgate Business Cloud to manage premium customers." }, { "companyName": "Hisense", text: "Hisense uses Fowgate Sales Distribution Software to unify multi-branch operations." }, { "companyName": "NNPC", text: "Enhancing settlor and host community collaborative operations through AI-powered data management." }, { "companyName": "Lonking", text: "Lonking Nigeris manages multi-entity financials and logistics efficiently with Fowgate ERP." }, { "companyName": "Litzburg", text: "Leveraging integrated project and workforce management for optimal performance." }];
+const logos = [{ companyName: "Nestle.png", text: "Nestlé relies on Fowgate Business Cloud to streamline multi-warehouse inventory, supply chain, and sales", url: "nestle2.jpg" }, { "companyName": "Uber.png", text: "Uber drivers use Fowgate Business Cloud to manage premium customers.", url: 'uber1.avif' }, { "companyName": "Hisense.png", text: "Hisense uses Fowgate Sales Distribution Software to unify multi-branch operations.", url: 'hisense1.avif' }, { "companyName": "NNPC.png", text: "Enhancing settlor and host community collaborative operations through AI-powered data management.", url: "nnp3.jpg" }, { "companyName": "Lonking.png", text: "Lonking Nigeris manages multi-entity financials and logistics efficiently with Fowgate ERP.", url: 'lonking1.jpg' }, { "companyName": "Litzburg.png", text: "Leveraging integrated project and workforce management for optimal performance.", url: "litzburg1.jpg" }];
 
 const resources = [
   ["Fowgate partners with Tekpluent, UK, to train 100 aspiring data analysts in Nigeria.", "IDC", "wide"],
@@ -151,436 +152,15 @@ const partners = [
 
 
 
-
-function DashboardMockup() {
-  return (
-    <div className="mx-auto mt-10 w-full overflow-hidden rounded-3xl border border-black/5 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.06)]">
-      <div className="grid md:grid-cols-[142px_1fr]">
-        <aside className="hidden md:block bg-[#111318] p-5 text-white">
-          <div className="mb-7 inline rounded bg-cobalt px-3 py-1 text-[10px]">Fowgate</div>
-          {["Teams", "Payroll", "Compliance", "Calendar", "Settings", "Banking", "Accounts", "Suppliers", "Reports", "Inventory", "Tax", "CRM"].map((item) => (
-            <div key={item} className="mb-4 text-[11px] text-white/55">{item}</div>
-          ))}
-        </aside>
-        <main className="p-6">
-          <div className="mb-6 flex items-center justify-between">
-            <h3 className="text-base font-extrabold">Engagement Tracking</h3>
-            <div className="flex gap-3 text-slate-400"><span>✦</span><span>◌</span><span>●</span></div>
-          </div>
-          <div className="grid grid-cols-3 gap-4">
-            {["$150,250", "$42,376", "$230,498"].map((num) => <div key={num} className="rounded border border-slate-200 p-3"><p className="text-slate-500">Total Sales</p><b>{num}</b></div>)}
-          </div>
-          <div className="mt-6 grid grid-cols-[1.2fr_0.8fr_1fr] gap-5">
-            <div className="flex h-40 items-end gap-3 rounded border border-slate-200 p-5">
-              {[42, 58, 75].map((h) => <span key={h} className="w-10 rounded-t bg-cobalt" style={{ height: `${h}%` }} />)}
-            </div>
-            <div className="grid place-items-center rounded border border-slate-200">
-              <div className="grid h-24 w-24 place-items-center rounded-full border-14 border-cyan border-t-orange-400 text-center font-extrabold">54<br /><span className="text-[10px] font-normal">Tasks</span></div>
-            </div>
-            <div className="space-y-3">
-              {["Move approvals", "Follow up", "Monthly report", "Send document"].map((task, i) => <div key={task} className="rounded bg-slate-50 p-3 text-[11px]"><span className="mr-2 text-cobalt">●</span>{task}</div>)}
-            </div>
-          </div>
-          <div className="mt-5 grid grid-cols-3 gap-4">
-            {["Meeting Alerts", "Deadline Alerts", "Shutdown Alert"].map((item) => <div key={item} className="h-24 rounded border border-slate-200 p-3 text-slate-500">{item}</div>)}
-          </div>
-        </main>
-      </div>
-    </div>
-  );
-}
-//  function Header({
-//   openMobileNav,
-//   setOpenMobileNav,
-// }: {
-//   openMobileNav: boolean;
-//   setOpenMobileNav: React.Dispatch<React.SetStateAction<boolean>>;
-// }) {
-
-//   const [activeNav, setActiveNav] = useState("");
-
-//   return (
-//     <header className="relative overflow-visible bg-black text-white">
-//       <nav className="relative z-20 border-b  border-white/5 bg-black/40 backdrop-blur-xl">
-//         <div className="mx-auto flex h-15 max-w-7xl items-center justify-between px-6 lg:px-8">
-//           <div className="bg-blue">
-//             <a
-//               className="rounded-md text-white bg-blue-600 px-4 py-2 text-sm font-semibold tracking-tight"
-//               href="#"
-//             >
-//               Fowgate
-//             </a>
-//           </div>
-
-//           <div className="hidden h-full items-center gap-8 lg:flex">
-//             {navItems.map((item) => (
-//               <div
-//                 key={item}
-//                 className={`group relative flex h-full items-center ${activeNav === item ? "text-white" : ""
-//                   }`}
-//               >
-//                 <a
-//                   className={`flex h-full items-center border-b-2 text-sm font-medium transition-all ease-linear duration-600 ${activeNav === item
-//                     ? "text-white"
-//                     : "border-transparent text-white/70 hover:border-blue-600 hover:text-white"
-//                     }`}
-//                   href="#"
-//                   onClick={() => setActiveNav(item)}
-//                 >
-//                   {item}
-//                 </a>
-
-//                 {item === "Solutions" && (
-//                   <div className="absolute left-1/2 top-full hidden w-210 -translate-x-1/2 border border-black/5 bg-white p-10 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
-//                     <div className="grid grid-cols-[1fr_1.3fr] gap-16">
-//                       <div>
-//                         <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
-//                           By Industry
-//                         </h3>
-
-//                         <div className="grid grid-cols-2 gap-x-10 gap-y-5">
-//                           {industries.map((item) => (
-//                             <a
-//                               key={item}
-//                               href="#"
-//                               className="text-sm text-slate-600 transition hover:text-black"
-//                             >
-//                               {item}
-//                             </a>
-//                           ))}
-//                         </div>
-//                       </div>
-
-//                       <div>
-//                         <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
-//                           By Business Application
-//                         </h3>
-
-//                         <div className="grid grid-cols-2 gap-x-10 gap-y-5">
-//                           {apps.map((item) => (
-//                             <a
-//                               key={item}
-//                               href="#"
-//                               className="text-sm text-slate-600 transition hover:text-black"
-//                             >
-//                               {item}
-//                             </a>
-//                           ))}
-//                         </div>
-//                       </div>
-//                     </div>
-//                   </div>
-//                 )}
-//                 {item === "Product" && (
-//                   <div className="absolute left-1/2 top-full hidden w-60 -translate-x-1/2  border border-black/5 bg-white p-8 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
-//                     <div className="grid gap-16">
-//                       <div>
-//                         <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
-//                           Business Suites
-//                         </h3>
-
-//                         <div className="grid gap-x-10 gap-y-5">
-//                           {businessSuites.map((item) => (
-//                             <a
-//                               key={item}
-//                               href="#"
-//                               className="text-sm text-slate-600 transition hover:text-black"
-//                             >
-//                               {item}
-//                             </a>
-//                           ))}
-//                         </div>
-//                       </div>
-
-//                     </div>
-//                   </div>
-//                 )}
-//                 {item === "Resources" && (
-//                   <div className="absolute left-1/2 top-full hidden w-60 -translate-x-1/2  border border-black/5 bg-white p-8 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
-//                     <div className="grid   gap-16">
-
-//                       <div>
-//                         <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
-//                           Resources Overview
-//                         </h3>
-
-//                         <div className="grid   gap-x-10 gap-y-5">
-//                           {resourcesOverview.map((item) => (
-//                             <a
-//                               key={item}
-//                               href="#"
-//                               className="text-sm text-slate-600 transition hover:text-black"
-//                             >
-//                               {item}
-//                             </a>
-//                           ))}
-//                         </div>
-//                       </div>
-//                     </div>
-//                   </div>
-//                 )}
-//                 {item === "Partners" && (
-//                   <div className="absolute left-1/2 top-full hidden w-60 -translate-x-1/2  border border-black/5 bg-white p-8 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
-//                     <div className="grid gap-16">
-
-
-//                       <div>
-//                         <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
-//                           Partners Overview
-//                         </h3>
-
-//                         <div className="grid  gap-x-10 gap-y-5">
-//                           {partnersOverview.map((item) => (
-//                             <a
-//                               key={item}
-//                               href="#"
-//                               className="text-sm text-slate-600 transition hover:text-black"
-//                             >
-//                               {item}
-//                             </a>
-//                           ))}
-//                         </div>
-//                       </div>
-//                     </div>
-//                   </div>
-//                 )}
-//                 {item === "About" && (
-//                   <div className="absolute left-1/2 top-full hidden w-60 -translate-x-1/2  border border-black/5 bg-white p-8 text-ink shadow-[0_20px_80px_rgba(0,0,0,0.08)] group-hover:block">
-//                     <div className="grid gap-16">
-
-
-//                       <div>
-//                         <h3 className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
-//                           Company Overview
-//                         </h3>
-
-//                         <div className="grid   gap-x-10 gap-y-5">
-//                           {companyOverview.map((item) => (
-//                             <a
-//                               key={item}
-//                               href="#"
-//                               className="text-sm text-slate-600 transition hover:text-black"
-//                             >
-//                               {item}
-//                             </a>
-//                           ))}
-//                         </div>
-//                       </div>
-//                     </div>
-//                   </div>
-//                 )}
-//               </div>
-//             ))}
-//           </div>
-
-//           <div className="text-lg hidden md:block text-white/70">文</div>
-//           <div
-//             className="text-2xl md:hidden text-white/70 hover:text-blue-600 transition-all duration-200 cursor-pointer"
-//             onClick={() => setOpenMobileNav((prev) => !prev)}
-//           >
-//             {openMobileNav ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
-//           </div>
-
-
-//         </div>
-
-
-//       </nav>
-
-//       <section className="relative overflow-hidden">
-//         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.28),transparent_35%)]" />
-
-//         <div className="mx-auto flex  min-h-[85vh] max-w-7xl items-center px-6 py-28 lg:px-8 lg:py-36">
-//           <Stagger className="max-w-3xl">
-//             <StaggerItem>
-//               <h1 className="text-balance text-5xl font-semibold leading-[1.02] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-//                 Powering Businesses
-//                 <br />
-//                 Across <span className="text-cobalt">Africa</span>
-//               </h1>
-//             </StaggerItem>
-
-//             <StaggerItem>
-//               <p className="mt-8 max-w-2xl text-base sm:text-lg sm:leading-8 leading-7 text-white/70 lg:text-xl">
-//                 Transform your business processes with intelligent AI-driven
-//                 workflow solutions built for seamless collaboration and enterprise
-//                 productivity.
-//               </p>
-//             </StaggerItem>
-
-//             <StaggerItem>
-//               <div className="mt-14 flex flex-wrap gap-x-6 gap-y-4 text-sm text-white/60">
-//                 {[
-//                   "Cloud ERP",
-//                   "Business Intelligence",
-//                   "IOT",
-//                   "Productivity Tools",
-//                   "Data Lake",
-//                 ].map((item) => (
-//                   <span key={item}>{item}</span>
-//                 ))}
-//               </div>
-//             </StaggerItem>
-//           </Stagger>
-//         </div>
-//       </section>
-//     </header>
-//   );
-// }
-
-// function MobileNav({ openMobileNav, setOpenMobileNav }: { openMobileNav: boolean, setOpenMobileNav: React.Dispatch<React.SetStateAction<boolean>> }) {
-//   return (
-//     <div
-//       className={`fixed inset-0 z-9999 w-full bg-white transition-all duration-500 md:hidden ${openMobileNav
-//         ? "translate-x-0 opacity-100"
-//         : "translate-x-full opacity-0 pointer-events-none"
-//         }`}
-//     >
-
-//       <div className="flex h-full flex-col">
-
-//         <div className="flex h-20  items-center justify-between border-b border-black/5 px-6">
-
-//           <div className="text-xl font-semibold text-blue-600">
-//             Fowgate
-//           </div>
-
-//           <button onClick={() => setOpenMobileNav(false)}>
-//             <X className="h-7 w-7 cursor-pointer hover:text-blue-600 transition duration-300" />
-//           </button>
-
-//         </div>
-
-//         <div className="flex-1 overflow-y-auto px-6 pb-10">
-//           <div className="flex flex-col pt-10 ">
-
-//             <Accordion.Root
-//               type="multiple"
-//               className="flex flex-col"
-//             >
-
-//               {mobileNavItems.map((item) => (
-
-//                 <Accordion.Item
-//                   key={item.title}
-//                   value={item.title}
-//                   className="border-b border-black/10"
-//                 >
-
-//                   <Accordion.Trigger className="group flex w-full items-center justify-between py-6 text-left text-2xl font-medium text-black">
-
-//                     {item.title}
-
-//                     <ChevronDown className="h-5 w-5 transition-transform duration-300 group-data-[state=open]:rotate-180" />
-
-//                   </Accordion.Trigger>
-
-//                   <Accordion.Content className="overflow-hidden pb-6 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-
-//                     <Accordion.Root
-//                       type="multiple"
-//                       className="flex flex-col gap-2"
-//                     >
-
-//                       {item.sections.map((section) => (
-
-//                         <Accordion.Item
-//                           key={section.heading}
-//                           value={section.heading}
-//                           className="rounded-2xl bg-slate-50 px-5"
-//                         >
-
-//                           <Accordion.Trigger className="group flex w-full items-center justify-between py-5 text-left text-lg font-medium text-slate-900">
-
-//                             {section.heading}
-
-//                             <ChevronDown className="h-4 w-4 transition-transform duration-300 group-data-[state=open]:rotate-180" />
-
-//                           </Accordion.Trigger>
-
-//                           <Accordion.Content className="overflow-hidden pb-5 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-
-//                             <div className="flex flex-col gap-4 pl-2">
-
-//                               {section.links.map((link) => (
-//                                 <a
-//                                   key={link}
-//                                   href="#"
-//                                   className="text-base font-normal text-slate-600 transition hover:text-black"
-//                                 >
-//                                   {link}
-//                                 </a>
-//                               ))}
-
-//                             </div>
-
-//                           </Accordion.Content>
-
-//                         </Accordion.Item>
-
-//                       ))}
-
-//                     </Accordion.Root>
-
-//                   </Accordion.Content>
-
-//                 </Accordion.Item>
-
-//               ))}
-
-//             </Accordion.Root>
-
-//           </div>
-//         </div>
-//       </div>
-
-
-
-//     </div>
-//   );
-// }
-
-function SubNav({ openMobileNav }: { openMobileNav: boolean }) {
-  const [activeSubNav, setActiveSubNav] = useState("");
-  return (
-    <div className="sticky top-0 z-20 border-b border-black/5 bg-white/90 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
-
-        <div className="scrollbar-hide flex min-w-0 flex-1 overflow-x-auto">
-          <div className="flex min-w-max items-center gap-8">
-            {subNavItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                onClick={() => setActiveSubNav(item)}
-                className={`flex h-16 shrink-0 items-center border-b-2 text-sm font-medium transition-all duration-300  ${activeSubNav === item
-                  ? "border-blue-600 text-black"
-                  : "border-transparent text-slate-500 hover:text-black"
-                  }`}
-              >
-                {item}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <div className="hidden md:block">
-          <Button>Book a Demo</Button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function ProductIntro() {
   return (
-    <section className="relative overflow-hidden bg-[#F6F8FC]">
-      <div className="absolute inset-x-0 top-0 h-[420px] rounded-b-[80px] bg-[#DCE6FF] md:h-[520px] md:rounded-b-[120px]" />
+    <section className="relative overflow-hidden bg-[#F6F8FC]" id="overview">
+      <div className="absolute inset-x-0 top-0 h-[420px] rounded-b-[80px] bg-[#bfcfffc9] md:h-[520px] md:rounded-b-[150px]" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 lg:px-20 lg:py-16">
         <Reveal>
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-balance text-3xl sm:text-4xl font-semibold tracking-tight lg:text-5xl">
+          <div className="mx-auto text-center max-w-7xl">
+            <h2 className="text-balance w-full  text-3xl sm:text-4xl font-semibold tracking-tight lg:text-4xl">
               Smarter . Faster . More Productive Workflows
             </h2>
 
@@ -591,42 +171,15 @@ function ProductIntro() {
           </div>
         </Reveal>
 
-        <div className="mx-auto mt-20 max-w-5xl  overflow-hidden rounded-4xl border border-black/5 bg-white p-5 shadow-[0_30px_80px_rgba(0,0,0,0.06)]">
-          <DashboardMockup />
+        <div className="mx-auto mt-12 max-w-3xl overflow-hidden shadow-md rounded-4xl">
+          <img src="/overview-image.png" />
         </div>
       </div>
     </section>
   );
 }
 
-function OverlayImage({ src, type }: { src: string; type: "approval" | "finance" }) {
-  return (
-    <div className="relative">
-      <img className="h-97 w-full rounded-4xl object-cover shadow-image" src={src} alt="" />
-      {type === "approval" ? (
-        <>
-          <div className="absolute left-4 top-4 sm:left-6 sm:top-6 rounded bg-white/88 p-4 text-xs shadow-soft">
-            {["Purchase Order #00435", "Payment Requisition #034", "Bill of Materials #MR002"].map((item, i) => <p key={item} className="mb-3 text-sm font-medium">{item} <span
-              className={`rounded-full px-3 py-1 text-[11px] font-medium ${i === 1
-                ? "bg-amber-100 text-amber-700"
-                : "bg-emerald-100 text-emerald-700"
-                }`}
-            >
-              {i === 1 ? "Pending" : "Approved"}
-            </span></p>)}
-          </div>
-          <div className="absolute bottom-9 left-8 w-[220px] sm:w-56 rounded bg-white/85 p-4 text-xs shadow-soft">
-            <b>Purchase Order #00435</b><div className="mt-4 h-3 rounded bg-slate-300" /><div className="mt-3 h-3 w-4/5 rounded bg-slate-300" />
-          </div>
-        </>
-      ) : (
-        <div className="absolute right-10 top-20 rounded bg-white/86 p-4 text-xs shadow-soft">
-          {["1100 - Accounts Receivable", "1600 - Accumulated Depreciation", "2100 - Accrued Expenses", "2300 - Long-Term Liabilities"].map((item) => <p key={item} className="mb-2 max-w-120 font-semibold">{item}<span className="ml-8 font-bold">₦120,890</span></p>)}
-        </div>
-      )}
-    </div>
-  );
-}
+
 
 function Solutions() {
   const [activeTab, setActiveTab] = useState(tabs[0]);
@@ -665,7 +218,7 @@ function Solutions() {
   ]
   return (
     <section className="bg-white" id="solutions">
-      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-14 lg:py-32">
         <div className="max-w-2xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight">
             Solutions
@@ -967,25 +520,25 @@ function Solutions() {
       </div>
 
       <div className="bg-slate-50"  >
-        <div className="max-w-7xl mx-auto px-6 lg:px-8  py-24 lg:py-32">
+        <div className="max-w-7xl mx-auto px-6 lg:px-14  py-24 lg:py-32">
 
           <div className="space-y-32">
             <div className="grid items-center gap-20 lg:grid-cols-2 order-2 lg:order-1">
-              <OverlayImage type="approval" src="https://images.unsplash.com/photo-1587614382346-4ec70e388b28?auto=format&fit=crop&w=1100&q=80" />
-              <div className="max-w-xl md:h-97">
-                <h2 className="text-balance text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight tracking-tight  ">Faster Cross-Team Approval Processes</h2>
+              <img src="approval.jpeg" className="rounded-4xl" />
+              <div className="max-w-xl md:h-97 md:py-8">
+                <h2 className="text-balance text-3xl sm:text-3xl lg:text-3xl font-medium leading-tight tracking-tight  ">Faster Cross-Team Approval Processes</h2>
                 <p className="mt-7 text-lg leading-9 text-slate-700">Approve purchase orders, bills, vendor requests, and speed up internal processes on the go. Fowgate's intuitive multi-level cloud approval system eliminates bottlenecks across departments, ensuring strong internal controls, compliance, and a fast, paperless approval experience.</p>
                 <div className="mt-10"><Button>Get Started</Button></div>
               </div>
             </div>
 
             <div className="grid items-center gap-20 lg:grid-cols-2 order-1 lg:order-2">
-              <div className="max-w-xl md:h-97">
-                <h2 className="text-balance text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight tracking-tight ">Monthly Finance Closing Reports</h2>
+              <div className="max-w-xl md:h-97 md:py-8">
+                <h2 className="text-balance text-3xl sm:text-3xl lg:text-3xl font-medium leading-tight tracking-tight ">Monthly Finance Closing Reports</h2>
                 <p className="mt-7 text-lg leading-9 text-slate-700">Close books faster with automated accuracy, smooth reconciliations, unified ledgers, and instant variance insights that empower your finance team to finalize reports in hours, not days, while maintaining compliance and strategic decision-making.</p>
                 <div className="mt-10"><Button>Get Started</Button></div>
               </div>
-              <OverlayImage type="finance" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1100&q=80" />
+              <img src="finance.jpeg" className="rounded-4xl" />
             </div>
           </div>
         </div>
@@ -1002,7 +555,7 @@ function Stories() {
   );
   return (
     <section className="bg-white" id="customer-stories">
-      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-14 lg:py-32">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight">
@@ -1024,46 +577,45 @@ function Stories() {
         </div>
 
         <div className="mt-20  overflow-x-auto scroll-auto md:grid flex gap-6   pb-10 text-center md:grid-cols-6">
-          {logos.map((logo) => (
+          {logos.map((logo, index) => (
             <div
               key={logo.companyName}
-              className={`relative cursor-pointer flex items-center justify-center pb-5 text-2xl font-semibold tracking-tight transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:origin-left after:bg-blue-600 after:transition-transform after:duration-300 ${logo.companyName === currentStory
+              className={`relative cursor-pointer flex items-center justify-center font-semibold   transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-1 after:w-full after:origin-left after:bg-blue-600 after:transition-transform after:duration-300 ${logo.companyName === currentStory
                 ? "text-black after:scale-x-100"
                 : "text-slate-400 after:scale-x-0 hover:text-slate-700"
                 }`}
               onClick={() => setCurrentStory(logo.companyName)}
             >
-              {logo.companyName}
+              <img src={`/${logo.companyName}`} className={`w-30 p-2 ${index === 5 ? " mt-12" : ""}`} />
             </div>
           ))}
         </div>
 
         {/* story card */}
 
-        <div className="relative fixed mt-20 overflow-hidden   border border-black/5" >
-          <img
-            className="absolute top-0 inset-0 h-full w-full object-cover"
-            src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80"
-            alt="Warehouse boxes"
-          />
+        <div className="relative overflow-hidden border-black/5 border -mt-10" >
+          
+            <img
+              className="absolute top-0 inset-0 h-full w-full object-cover"
+              src={`/${activeStory?.url}`}
+              alt="Warehouse boxes"
+            />
+
+          
 
           <div className="absolute inset-0 bg-black/45" />
 
-          <div className="relative flex min-h-155 items-end p-6 lg:p-12">
-            <div className="max-w-2xl rounded-4xl border border-white/10 bg-white/90 p-8 backdrop-blur-xl lg:p-12">
+          <div className="relative flex min-h-100 items-end p-6 lg:p-12">
+            <div className="max-w-2xl flex items-start justify-center flex-col border border-white/10 bg-white/90 px-6 py-8 backdrop-blur-xl lg:py-8">
 
 
-              <h3 className="mt-6 text-3xl font-semibold leading-tight tracking-tight text-slate-900 md:text-4xl">
+              <h3 className="mt-6 text-xl font-medium leading-tight tracking-tight text-gray-700 md:text-lg">
                 {activeStory?.text}
               </h3>
 
-              <p className="mt-6 max-w-xl text-base leading-8 text-slate-600">
-                Discover how enterprise automation and cloud infrastructure
-                helped improve operational efficiency and workflow visibility
-                across multiple business units.
-              </p>
+              
 
-              <div className="mt-10">
+              <div className="mt-6">
                 <Button>Read More Stories</Button>
               </div>
             </div>
@@ -1087,49 +639,34 @@ function Integrations() {
 
   return (
     <section className="bg-[#F8FAFC]">
-      <div className="mx-auto grid max-w-7xl gap-20 px-6 py-24 lg:grid-cols-[1fr_auto_1fr] lg:px-8 lg:py-32">
+      <div className="mx-auto grid max-w-7xl gap-20 px-6 py-24 lg:grid-cols-[1fr_auto_1fr] lg:px-14 lg:py-32">
 
-        <div className="grid gap-14 lg:grid-cols-[80px_1fr]">
+        <div className="grid  lg:grid-cols-2">
 
-          <div className="flex flex-wrap content-start gap-4">
-            {chips.map((chip, i) => (
-              <div
-                key={chip}
-                className={`grid place-items-center rounded-full text-center text-xs font-medium tracking-tight shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-transform duration-300 hover:-translate-y-1 ${i % 3 === 0
-                  ? "h-20 w-20 bg-[#2563EB] text-white"
-                  : i % 3 === 1
-                    ? "h-16 w-16 border border-black/5 bg-white text-slate-700"
-                    : "h-20 w-20 bg-[#0F172A] text-white"
-                  }`}
-              >
-                <span className="max-w-[60px] leading-tight">
-                  {chip}
-                </span>
-              </div>
-            ))}
-          </div>
+      
+          <img src="/integration.png" className="flex items-center justify-center md:w-full w-1/3"/>
 
-          <div className="max-w-xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] ">
+          <div className="max-w-7xl">
+            <p className="text-md ">
               Pre-Built Connectors
             </p>
 
-            <h2 className="mt-5 text-3xl font-semibold tracking-tight">
+            <h2 className="mt-2 w-full max-w-7xl text-xl font-semibold tracking-tight">
               Integration Ecosystem
             </h2>
 
-            <p className="mt-6 text-lg font-medium text-slate-800">
+            <p className="mt-2 text-sm font-medium text-slate-800">
               The operating system for business
             </p>
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
+            <p className="mt-3 max-w-2xl w-full text-base  sm:text-sm">
               Connect all your essential business applications from accounting
               and CRM to HR and project management into one intelligent cloud
               ecosystem that streamlines operations and automates workflows
               across teams.
             </p>
 
-            <div className="mt-10">
+            <div className="mt-4">
               <Button>Talk to an Expert</Button>
             </div>
           </div>
@@ -1137,17 +674,17 @@ function Integrations() {
 
         <div className="w-px hidden md:block bg-slate-200  " />
 
-        <div className="relative overflow-hidden  border border-black/5 bg-white p-8 sm:p-10 lg:p-14">
+        <div className="relative overflow-hidden ">
 
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.08),transparent_40%)]" />
+         
 
           <div className="relative">
 
-            <div className="grid h-14 w-14 place-items-center rounded-full bg-blue-600 text-2xl text-white shadow-[0_10px_30px_rgba(37,99,235,0.3)]">
+            <div className="flex h-8 w-8 justify-center items-center py-4 px-2 rounded-full bg-blue-600 text-md text-white ">
               ❝
             </div>
 
-            <blockquote className="mt-10 max-w-2xl text-xl font-medium leading-9 tracking-tight text-slate-900 sm:text-2xl sm:leading-10">
+            <blockquote className="mt-10 max-w-7xl w-full text-md font-normal text-slate-900 ">
               “Fowgate’s Integration Solutions ensures your operations become
               more connected, faster and intelligently data-driven.”
             </blockquote>
@@ -1182,7 +719,7 @@ function Resources() {
   const [resource, setResource] = useState("Press");
   return (
     <section className="bg-[#0a2b5a] text-white">
-      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-14 lg:py-32">
 
         <div className="max-w-3xl">
 
@@ -1279,7 +816,7 @@ function Resources() {
 function News() {
   return (
     <section className="bg-[#F8FAFC]">
-      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-14 lg:py-32">
 
         <div className="max-w-3xl">
 
@@ -1402,7 +939,7 @@ function News() {
 function PartnerEcosystem() {
   return (
     <section className="bg-white">
-      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-14 lg:py-32">
 
         <div className="mx-auto max-w-3xl text-center">
 
@@ -1500,7 +1037,7 @@ function Footer() {
 
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_35%)]" />
 
-        <div className="relative mx-auto max-w-5xl px-6 py-20 text-center lg:px-8 lg:py-22">
+        <div className="relative mx-auto max-w-5xl px-6 py-20 text-center lg:px-14 lg:py-22">
 
 
 
@@ -1600,13 +1137,11 @@ function Footer() {
 
 export default function Home() {
   const [openMobileNav, setOpenMobileNav] = useState(false);
+  console.log({ openMobileNav })
   return (
     <main className="min-h-screen">
-
-      <Header openMobileNav={openMobileNav} setOpenMobileNav={setOpenMobileNav} />
       <MobileNav openMobileNav={openMobileNav} setOpenMobileNav={setOpenMobileNav} />
-      <HomeHero />
-      <SubNav openMobileNav={openMobileNav} />
+      <Combo openMobileNav={openMobileNav} setOpenMobileNav={setOpenMobileNav} />
       <ProductIntro />
       <Solutions />
       <Stories />
