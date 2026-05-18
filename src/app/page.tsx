@@ -524,7 +524,7 @@ function Solutions() {
 
           <div className="space-y-32">
             <div className="grid items-center gap-20 lg:grid-cols-2 order-2 lg:order-1">
-              <img src="approval.jpeg" className="rounded-4xl" />
+              <img src="Approval.jpeg" className="rounded-4xl" />
               <div className="max-w-xl md:h-97 md:py-8">
                 <h2 className="text-balance text-3xl sm:text-3xl lg:text-3xl font-medium leading-tight tracking-tight  ">Faster Cross-Team Approval Processes</h2>
                 <p className="mt-7 text-lg leading-9 text-slate-700">Approve purchase orders, bills, vendor requests, and speed up internal processes on the go. Fowgate's intuitive multi-level cloud approval system eliminates bottlenecks across departments, ensuring strong internal controls, compliance, and a fast, paperless approval experience.</p>
